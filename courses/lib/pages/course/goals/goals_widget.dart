@@ -62,15 +62,15 @@ class _GoalsWidgetState extends State<GoalsWidget> {
     );
     if (result != null) {
       if (widget.goals != null) {
+        result.order = widget.goals!.goalSections.length;
         widget.goals!.goalSections.add(result);
         await Data.goals.set(widget.courseID, widget.goals!);
       } else {
+        result.order = 0;
         Goals goals = Goals();
         goals.goalSections.add(result);
         await Data.goals.set(widget.courseID, goals);
       }
     }
   }
-
-  Future<void> openGoalEditor() async {}
 }

@@ -1,6 +1,8 @@
 import 'package:courses/convienience/app_theme.dart';
 import 'package:courses/data/data.dart';
 import 'package:courses/data/models/course.dart';
+import 'package:courses/widgets/footer.dart';
+import 'package:courses/widgets/header.dart';
 import 'package:courses/widgets/loading.dart';
 import 'package:courses/widgets/page.dart';
 import 'package:flutter/material.dart';
@@ -38,10 +40,9 @@ class _CourseSettingsPageState extends State<CourseSettingsPage> {
   Widget buildContent(Course course) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(course.name, style: AppTheme.text.headline1),
-        ),
+        AppHeader(text: course.name),
+        const Spacer(),
+        const AppFooter(),
       ],
     );
   }

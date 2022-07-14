@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class AppFooter extends StatelessWidget {
-  final Function onSave;
-  const AppFooter({Key? key, required this.onSave}) : super(key: key);
+  final Function? onSave;
+  const AppFooter({Key? key, this.onSave}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,24 +16,33 @@ class AppFooter extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: AppButton(
-                color: AppTheme.colorLightest,
-                text: 'Annuleren',
-                icon: Icons.cancel,
-                onPressed: () {
-                  context.pop();
-                }),
+            child: onSave != null
+                ? AppButton(
+                    color: AppTheme.colorLightest,
+                    text: 'Annuleren',
+                    icon: Icons.cancel,
+                    onPressed: () {
+                      context.pop();
+                    })
+                : Container(),
           ),
           Padding(
               padding: const EdgeInsets.all(8.0),
-              child: AppButton(
-                text: 'Bewaren',
-                icon: Icons.save,
-                onPressed: () async {
-                  onSave();
-                  context.pop();
-                },
-              )),
+              child: onSave != null
+                  ? AppButton(
+                      text: 'Bewaren',
+                      icon: Icons.save,
+                      onPressed: () async {
+                        onSave!();
+                        context.pop();
+                      },
+                    )
+                  : AppButton(
+                      icon: Icons.arrow_back,
+                      text: 'Terug',
+                      onPressed: () async {
+                        context.pop();
+                      })),
         ],
       ),
     );

@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:courses/convienience/random_key.dart';
 import 'package:courses/data/names.dart';
 
@@ -33,6 +35,7 @@ class Periods {
     map.forEach((key, value) {
       periods.add(Period.fromMap(key, value));
     });
+    periods.sort((a, b) => a.date.compareTo(b.date));
   }
 
   Map<String, dynamic> toMap() {

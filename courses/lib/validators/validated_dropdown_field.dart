@@ -1,3 +1,4 @@
+import 'package:courses/convienience/app_theme.dart';
 import 'package:courses/convienience/random_key.dart';
 import 'package:courses/validators/validation_models.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,10 @@ class _ValidatedDropdownFieldState extends State<ValidatedDropdownField> {
     return DropdownButtonFormField(
       key: fieldKey ?? widget.key,
       items: items,
+      value: widget.model.value,
+      // widget.model.value != null ? widget.items[widget.model.value] : null,
       onChanged: widget.onChanged,
+      dropdownColor: AppTheme.colorDarkest,
     );
   }
 }

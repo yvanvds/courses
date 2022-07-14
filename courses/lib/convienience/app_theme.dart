@@ -75,29 +75,29 @@ class AppTheme {
     secondary: colorAccent,
   );
   static TextTheme text = Typography().black.copyWith(
-        bodyText1: GoogleFonts.ubuntu(
+        bodyText1: GoogleFonts.lora(
           fontSize: 18,
           color: colorLightest,
-          fontWeight: FontWeight.w100,
+          fontWeight: FontWeight.w300,
         ),
-        bodyText2: GoogleFonts.ubuntu(
+        bodyText2: GoogleFonts.lora(
           fontSize: 12,
           color: colorLightest,
-          fontWeight: FontWeight.w100,
+          fontWeight: FontWeight.w300,
         ),
-        headline1: GoogleFonts.indieFlower(
+        headline1: GoogleFonts.ubuntu(
           fontSize: 32,
-          fontWeight: FontWeight.w300,
+          fontWeight: FontWeight.w500,
           color: colorLightest,
         ),
-        headline2: GoogleFonts.indieFlower(
+        headline2: GoogleFonts.ubuntu(
           fontSize: 28,
-          fontWeight: FontWeight.w300,
+          fontWeight: FontWeight.w500,
           color: colorLightest,
         ),
-        headline3: GoogleFonts.indieFlower(
+        headline3: GoogleFonts.ubuntu(
           fontSize: 24,
-          fontWeight: FontWeight.w300,
+          fontWeight: FontWeight.w400,
           color: colorLightest,
         ),
         subtitle1: GoogleFonts.ubuntu(

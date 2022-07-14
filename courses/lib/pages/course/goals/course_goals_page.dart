@@ -1,18 +1,14 @@
-import 'package:courses/convienience/app_theme.dart';
 import 'package:courses/data/data.dart';
 import 'package:courses/data/models/course.dart';
 import 'package:courses/data/models/goals.dart';
 import 'package:courses/data/models/periods.dart';
 import 'package:courses/pages/course/goals/goals_widget.dart';
-import 'package:courses/pages/course/goals/periods_editor.dart';
 import 'package:courses/pages/course/goals/periods_widget.dart';
-import 'package:courses/widgets/buttons/app_button.dart';
-import 'package:courses/widgets/cards/app_card.dart';
 import 'package:courses/widgets/footer.dart';
+import 'package:courses/widgets/header.dart';
 import 'package:courses/widgets/loading.dart';
 import 'package:courses/widgets/page.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class CourseGoalsPage extends StatefulWidget {
@@ -56,10 +52,7 @@ class _CourseGoalsPageState extends State<CourseGoalsPage> {
   Widget buildContent(Course course) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text('${course.name} doelen', style: AppTheme.text.headline1),
-        ),
+        AppHeader(text: '${course.name} Doelen'),
         Expanded(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -78,9 +71,7 @@ class _CourseGoalsPageState extends State<CourseGoalsPage> {
             ],
           ),
         ),
-        AppFooter(
-          onSave: () {},
-        ),
+        const AppFooter(),
       ],
     );
   }

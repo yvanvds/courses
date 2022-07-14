@@ -53,17 +53,26 @@ class _CoursePageState extends State<CoursePage> {
           ),
           children: [
             BigButton(
-                label: 'Instellingen',
-                icon: Icons.settings,
-                onPressed: () {
-                  context.go('/course/${course.id}/settings');
-                }),
+              label: 'Cursus',
+              icon: Icons.book,
+              onPressed: () {
+                context.go('/course/${course.id}/cursus');
+              },
+            ),
             BigButton(
-                label: 'Doelen',
-                icon: Icons.task,
-                onPressed: () {
-                  context.go('/course/${course.id}/goals');
-                }),
+              label: 'Doelen',
+              icon: Icons.task,
+              onPressed: () {
+                context.go('/course/${course.id}/goals');
+              },
+            ),
+            BigButton(
+              label: 'Instellingen',
+              icon: Icons.settings,
+              onPressed: () {
+                context.go('/course/${course.id}/settings');
+              },
+            ),
           ],
         ),
       ],

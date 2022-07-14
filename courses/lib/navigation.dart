@@ -1,7 +1,8 @@
 import 'package:courses/page_not_found.dart';
+import 'package:courses/pages/course/content/course_content_page.dart';
 import 'package:courses/pages/course/goals/course_goals_page.dart';
 import 'package:courses/pages/course/course_page.dart';
-import 'package:courses/pages/course/course_settings_page.dart';
+import 'package:courses/pages/course/settings/course_settings_page.dart';
 import 'package:courses/pages/dashboard/dashboard.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,6 +27,11 @@ class Nav {
               builder: (context, state) =>
                   CoursePage(courseID: state.params['id']!),
               routes: [
+                GoRoute(
+                  path: 'cursus',
+                  builder: (context, state) =>
+                      CourseContentPage(courseID: state.params['id']!),
+                ),
                 GoRoute(
                   path: 'settings',
                   builder: (context, state) =>

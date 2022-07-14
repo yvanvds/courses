@@ -24,6 +24,7 @@ class _GoalEditorState extends State<GoalEditor> {
   void initState() {
     if (widget.goal != null) {
       validator.validateName(widget.goal!.name);
+      validator.validatePeriodId(widget.goal!.periodId);
     }
     validator.addListener(listenToValidator);
 
