@@ -1,7 +1,5 @@
 import 'package:courses/convienience/app_theme.dart';
-import 'package:courses/data/data.dart';
 import 'package:courses/data/models/goals.dart';
-import 'package:courses/pages/course/goals/goal_editor.dart';
 import 'package:flutter/material.dart';
 
 class GoalSectionCard extends StatefulWidget {

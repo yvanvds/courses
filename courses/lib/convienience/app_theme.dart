@@ -63,9 +63,9 @@ class AppTheme {
   }
 
   static Color colorDarkest = const Color(0xFF43285D);
-  static Color colorDark = const Color(0xFF8B1465);
+  static Color colorDark = const Color.fromARGB(255, 67, 13, 84);
   static Color colorAccent = const Color(0xFFEAEB21);
-  static Color colorLight = const Color(0xFFCE168E);
+  static Color colorLight = const Color(0xFF8B1465);
   static Color colorLightest = Colors.white;
   static Color colorWarning = Colors.red;
 

@@ -5,6 +5,7 @@ class Topic {
   String id;
   late String name;
   List<String> goals = [];
+  List<String> content = [];
 
   Topic({this.id = '0'});
 
@@ -16,12 +17,19 @@ class Topic {
         goals.add(element);
       }
     }
+    if (map.containsKey(FB.topic.content)) {
+      var list = map[FB.topic.content];
+      for (String element in list) {
+        content.add(element);
+      }
+    }
   }
 
   Map<String, dynamic> toMap() {
     Map<String, dynamic> result = {};
     result[FB.topic.name] = name;
     result[FB.topic.goals] = goals;
+    result[FB.topic.content] = content;
 
     return result;
   }

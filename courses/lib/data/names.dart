@@ -5,12 +5,14 @@ class FB {
   static final period = PeriodNames();
   static final goal = GoalNames();
   static final topic = TopicNames();
+  static final content = ContentNames();
 }
 
 class CollectionNames {
   final String courses = 'courses';
   final String settings = 'settings';
   final String topics = 'topics';
+  final String content = 'content';
 }
 
 class DocumentNames {
@@ -39,4 +41,10 @@ class TopicNames {
   final String name = 'name';
   final String goals = 'goals';
   final String content = 'content';
+}
+
+class ContentNames {
+  final String content = 'content';
+  final String contentType = 'contentType';
+  final String name = 'name';
 }

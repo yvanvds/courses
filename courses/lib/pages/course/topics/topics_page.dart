@@ -1,8 +1,9 @@
-import 'package:courses/convienience/app_theme.dart';
 import 'package:courses/data/data.dart';
 import 'package:courses/data/models/course.dart';
+import 'package:courses/data/models/goals.dart';
 import 'package:courses/data/models/topic.dart';
-import 'package:courses/pages/course/content/topics_widget.dart';
+import 'package:courses/pages/course/topics/topic_content_widget.dart';
+import 'package:courses/pages/course/topics/topics_list_widget.dart';
 import 'package:courses/widgets/footer.dart';
 import 'package:courses/widgets/header.dart';
 import 'package:courses/widgets/loading.dart';
@@ -20,6 +21,8 @@ class CourseContentPage extends StatefulWidget {
 
 class _CourseContentPageState extends State<CourseContentPage> {
   List<Topic>? topics;
+  Topic? selected;
+  Goals? goals;
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +35,13 @@ class _CourseContentPageState extends State<CourseContentPage> {
         StreamProvider<List<Topic>?>(
             create: (_) => Data.topics.getAll(widget.courseID),
             initialData: null),
+        StreamProvider<Goals?>(
+            create: (_) => Data.goals.get(widget.courseID), initialData: null),
       ],
       builder: (BuildContext context) {
         Course? course = Provider.of<Course?>(context);
         topics = Provider.of<List<Topic>?>(context);
+        goals = Provider.of<Goals?>(context);
 
         if (course == null) return const Loading();
 
@@ -52,10 +58,25 @@ class _CourseContentPageState extends State<CourseContentPage> {
             child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            TopicsWidget(
-              courseID: widget.courseID,
-              topics: topics,
-            ),
+            TopicsListWidget(
+                courseID: widget.courseID,
+                topics: topics,
+                onSelect: (topic) {
+                  selected = topic;
+                  setState(() {});
+                }),
+            selected != null && goals != null
+                ? Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: TopicContentWidget(
+                        courseID: widget.courseID,
+                        topic: selected!,
+                        goals: goals!,
+                      ),
+                    ),
+                  )
+                : Container(),
           ],
         )),
         const AppFooter(),
