@@ -23,14 +23,15 @@ class TextContent implements IContent {
       : contentType = ContentType.textContent {
     _content =
         map.containsKey(FB.content.content) ? map[FB.content.content] : [];
-    name = map.containsKey(FB.content.name) ? map[FB.content.name] : [];
+    name = map.containsKey(FB.content.name) ? map[FB.content.name] : '';
   }
 
   @override
   Map<String, dynamic> toMap() {
     Map<String, dynamic> result = {};
     result[FB.content.content] = _content;
-    result[FB.content.contentType] = contentType.toString();
+    result[FB.content.name] = name;
+    result[FB.content.contentType] = contentType.name;
 
     return result;
   }

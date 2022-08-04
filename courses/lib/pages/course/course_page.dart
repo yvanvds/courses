@@ -40,7 +40,7 @@ class _CoursePageState extends State<CoursePage> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(32.0),
           child: Text(course.name, style: AppTheme.text.headline1),
         ),
         GridView(
@@ -53,10 +53,17 @@ class _CoursePageState extends State<CoursePage> {
           ),
           children: [
             BigButton(
-              label: 'Cursus',
+              label: 'Inhouden',
               icon: Icons.book,
               onPressed: () {
-                context.go('/course/${course.id}/cursus');
+                context.go('/course/${course.id}/topics');
+              },
+            ),
+            BigButton(
+              label: 'Bestanden',
+              icon: Icons.folder,
+              onPressed: () {
+                context.go('/course/${course.id}/files');
               },
             ),
             BigButton(

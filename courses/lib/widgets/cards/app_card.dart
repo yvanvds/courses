@@ -35,19 +35,19 @@ class AppCard extends StatelessWidget {
               ),
               clipBehavior: Clip.antiAliasWithSaveLayer,
               child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: gradient ??
-                        <Color>[AppTheme.colorDark, AppTheme.colorLight],
-                  ),
-                ),
+                color: color ?? AppTheme.colorDark,
                 child: Column(
                   mainAxisSize: maximize ? MainAxisSize.max : MainAxisSize.min,
                   children: [
                     Container(
-                      color: color ?? AppTheme.colorDarkest,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: gradient ??
+                              <Color>[AppTheme.colorDark, AppTheme.colorLight],
+                        ),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: title,

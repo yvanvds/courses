@@ -42,7 +42,7 @@ class _TopicContentWidgetState extends State<TopicContentWidget> {
                 children: [
                   TopicContentLoader(
                     courseID: widget.courseID,
-                    topic: widget.topic,
+                    topicID: widget.topic.id,
                   ),
                   TopicGoalsTab(
                     courseID: widget.courseID,

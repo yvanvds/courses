@@ -3,7 +3,7 @@ import 'package:courses/data/models/content/content_factory.dart';
 import 'package:courses/data/names.dart';
 
 class ContentService {
-  Stream<List<IContent>?> get(String courseID, String topicID) {
+  Stream<List<IContent>?> getAll(String courseID, String topicID) {
     return FirebaseFirestore.instance
         .collection(FB.collections.courses)
         .doc(courseID)
@@ -14,17 +14,36 @@ class ContentService {
         .map(ContentFactory.fromFirebase);
   }
 
-  Future<void> create(
+  Stream<IContent?> getSingle(
+      String courseID, String topicID, String contentID) {
+    return FirebaseFirestore.instance
+        .collection(FB.collections.courses)
+        .doc(courseID)
+        .collection(FB.collections.topics)
+        .doc(topicID)
+        .collection(FB.collections.content)
+        .doc(contentID)
+        .snapshots()
+        .map((event) {
+      if (event.exists && event.data() != null) {
+        return ContentFactory.fromMap(event.id, event.data()!);
+      }
+      return null;
+    });
+  }
+
+  Future<String> create(
       {required String courseID,
       required String topicID,
       required IContent content}) async {
-    await FirebaseFirestore.instance
+    var result = await FirebaseFirestore.instance
         .collection(FB.collections.courses)
         .doc(courseID)
         .collection(FB.collections.topics)
         .doc(topicID)
         .collection(FB.collections.content)
         .add(content.toMap());
+    return result.id;
   }
 
   Future<void> update(

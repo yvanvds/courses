@@ -70,6 +70,7 @@ class _CourseContentPageState extends State<CourseContentPage> {
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: TopicContentWidget(
+                        key: Key(selected!.id),
                         courseID: widget.courseID,
                         topic: selected!,
                         goals: goals!,

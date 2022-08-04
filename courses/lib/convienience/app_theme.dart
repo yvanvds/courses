@@ -62,9 +62,9 @@ class AppTheme {
         ));
   }
 
-  static Color colorDarkest = const Color(0xFF43285D);
-  static Color colorDark = const Color.fromARGB(255, 67, 13, 84);
-  static Color colorAccent = const Color(0xFFEAEB21);
+  static Color colorDarkest = Color.fromARGB(255, 33, 30, 34);
+  static Color colorDark = Color.fromARGB(255, 59, 50, 62);
+  static Color colorAccent = Color.fromARGB(255, 235, 188, 33);
   static Color colorLight = const Color(0xFF8B1465);
   static Color colorLightest = Colors.white;
   static Color colorWarning = Colors.red;
@@ -97,6 +97,11 @@ class AppTheme {
         ),
         headline3: GoogleFonts.ubuntu(
           fontSize: 24,
+          fontWeight: FontWeight.w400,
+          color: colorLightest,
+        ),
+        headline4: GoogleFonts.ubuntu(
+          fontSize: 20,
           fontWeight: FontWeight.w400,
           color: colorLightest,
         ),

@@ -40,7 +40,9 @@ class GoalNames {
 class TopicNames {
   final String name = 'name';
   final String goals = 'goals';
-  final String content = 'content';
+  final String contents = 'contents';
+  final String contentId = 'contentId';
+  final String contentName = 'contentName';
 }
 
 class ContentNames {

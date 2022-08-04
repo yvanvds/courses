@@ -1,4 +1,3 @@
-import 'package:courses/convienience/app_theme.dart';
 import 'package:courses/data/data.dart';
 import 'package:courses/data/models/course.dart';
 import 'package:courses/widgets/footer.dart';

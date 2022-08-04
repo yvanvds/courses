@@ -1,11 +1,30 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:courses/data/names.dart';
 
+class ContentLink {
+  late String id;
+  late String name;
+
+  ContentLink({required this.id, required this.name});
+  ContentLink.fromMap(Map<String, dynamic> map) {
+    id = map.containsKey(FB.topic.contentId) ? map[FB.topic.contentId] : '';
+    name =
+        map.containsKey(FB.topic.contentName) ? map[FB.topic.contentName] : '';
+  }
+
+  Map<String, dynamic> toMap() {
+    Map<String, dynamic> result = {};
+    result[FB.topic.contentId] = id;
+    result[FB.topic.contentName] = name;
+    return result;
+  }
+}
+
 class Topic {
   String id;
   late String name;
   List<String> goals = [];
-  List<String> content = [];
+  List<ContentLink> contents = [];
 
   Topic({this.id = '0'});
 
@@ -17,10 +36,10 @@ class Topic {
         goals.add(element);
       }
     }
-    if (map.containsKey(FB.topic.content)) {
-      var list = map[FB.topic.content];
-      for (String element in list) {
-        content.add(element);
+    if (map.containsKey(FB.topic.contents)) {
+      var list = map[FB.topic.contents];
+      for (Map<String, dynamic> map in list) {
+        contents.add(ContentLink.fromMap(map));
       }
     }
   }
@@ -29,8 +48,15 @@ class Topic {
     Map<String, dynamic> result = {};
     result[FB.topic.name] = name;
     result[FB.topic.goals] = goals;
-    result[FB.topic.content] = content;
+    result[FB.topic.contents] = contentsToList();
+    return result;
+  }
 
+  List<Map<String, dynamic>> contentsToList() {
+    List<Map<String, dynamic>> result = [];
+    for (var element in contents) {
+      result.add(element.toMap());
+    }
     return result;
   }
 

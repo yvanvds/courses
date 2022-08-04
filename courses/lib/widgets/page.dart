@@ -47,23 +47,23 @@ class AppScaffoldState extends State<AppScaffold> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        image: const DecorationImage(
-          image: AssetImage("images/logo.png"),
-          opacity: 0.2,
-          fit: BoxFit.contain,
-        ),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            AppTheme.colorLight,
-            AppTheme.colorDark,
-          ],
-        ),
-      ),
+      // decoration: BoxDecoration(
+      //   image: const DecorationImage(
+      //     image: AssetImage("images/logo.png"),
+      //     opacity: 0.2,
+      //     fit: BoxFit.contain,
+      //   ),
+      //   gradient: LinearGradient(
+      //     begin: Alignment.topLeft,
+      //     end: Alignment.bottomRight,
+      //     colors: [
+      //       AppTheme.colorLight,
+      //       AppTheme.colorDark,
+      //     ],
+      //   ),
+      // ),
       child: Scaffold(
-          backgroundColor: Colors.transparent,
+          backgroundColor: AppTheme.colorDarkest,
           appBar: AppBar(
             backgroundColor: AppTheme.colorDarkest,
             elevation: 5,

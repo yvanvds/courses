@@ -31,7 +31,7 @@ class _DashboardPageState extends State<DashboardPage> {
         return Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(32.0),
               child: Text('Welkom terug!', style: AppTheme.text.headline1),
             ),
             CoursesList(courses: courses),

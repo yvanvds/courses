@@ -1,3 +1,4 @@
+import 'package:courses/convienience/app_theme.dart';
 import 'package:courses/convienience/random_key.dart';
 import 'package:courses/validators/validation_models.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class ValidatedTextField extends StatefulWidget {
     this.maxLines,
     this.maxLength,
     this.autoFocus,
+    this.fontSize = 24,
   }) : super(key: key);
 
   final String labelText;
@@ -24,6 +26,7 @@ class ValidatedTextField extends StatefulWidget {
   final int? maxLines;
   final int? maxLength;
   final bool? autoFocus;
+  final double fontSize;
 
   @override
   State<ValidatedTextField> createState() => _ValidatedTextFieldState();
@@ -46,10 +49,16 @@ class _ValidatedTextFieldState extends State<ValidatedTextField> {
       validator: widget.validator,
       maxLines: widget.maxLines,
       maxLength: widget.maxLength,
+      style: AppTheme.text.bodyText1!.copyWith(
+        fontSize: widget.fontSize,
+      ),
       inputFormatters: widget.inputFormatters,
       autofocus: widget.autoFocus ?? false,
+      cursorColor: AppTheme.colorLightest,
       decoration: InputDecoration(
-          labelText: widget.labelText, errorText: widget.model.error),
+          labelText: widget.labelText,
+          errorText: widget.model.error,
+          counterStyle: AppTheme.text.bodyText2),
     );
   }
 }

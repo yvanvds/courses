@@ -27,7 +27,6 @@ class _ContentTypePickerDialogState extends State<ContentTypePickerDialog> {
         width: 300,
         height: 500,
         child: ListView(
-          //shrinkWrap: true,
           children: getTypes(),
         ),
       ),
@@ -37,6 +36,7 @@ class _ContentTypePickerDialogState extends State<ContentTypePickerDialog> {
   List<Widget> getTypes() {
     List<Widget> result = [];
     result.add(createButton(ContentType.textContent, 'Tekst'));
+    result.add(createButton(ContentType.titleContent, 'Titel'));
     return result;
   }
 

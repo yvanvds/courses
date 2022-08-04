@@ -5,7 +5,9 @@ import 'package:courses/pages/course/topics/topics_page.dart';
 import 'package:courses/pages/course/goals/course_goals_page.dart';
 import 'package:courses/pages/course/course_page.dart';
 import 'package:courses/pages/course/settings/course_settings_page.dart';
+import 'package:courses/pages/course/viewer/viewer_page.dart';
 import 'package:courses/pages/dashboard/dashboard.dart';
+import 'package:courses/pages/file_manager/file_manager_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,6 +19,7 @@ class Nav {
   }
 
   final router = GoRouter(
+    debugLogDiagnostics: true,
     errorBuilder: (context, state) => PageNotFound(
       text: 'Cannot find uri: ${state.location}',
     ),
@@ -31,9 +34,58 @@ class Nav {
                   CoursePage(courseID: state.params['id']!),
               routes: [
                 GoRoute(
-                  path: 'cursus',
+                  path: 'topics',
                   builder: (context, state) =>
                       CourseContentPage(courseID: state.params['id']!),
+                  routes: [
+                    GoRoute(
+                      path: ':topicID',
+                      builder: (content, state) =>
+                          CoursePage(courseID: state.params['id']!),
+                      routes: [
+                        GoRoute(
+                          path: 'create/:type',
+                          builder: (context, state) {
+                            Widget? result = EditorFactory.forNewContent(
+                              state.params['id']!,
+                              state.params['topicID']!,
+                              ContentFactory.getType(state.params['type']!),
+                            );
+                            if (result != null) return result;
+                            return PageNotFound(
+                              text: 'Cannot find uri: ${state.location}',
+                            );
+                          },
+                        ),
+                        GoRoute(
+                          path: 'edit/:contentID',
+                          builder: (context, state) {
+                            Widget? result = EditorFactory.forExistingContent(
+                              state.params['id']!,
+                              state.params['topicID']!,
+                              state.params['contentID']!,
+                            );
+                            if (result != null) return result;
+                            return PageNotFound(
+                              text: 'Cannot find uri: ${state.location}',
+                            );
+                          },
+                        ),
+                        GoRoute(
+                          path: 'view',
+                          builder: (context, state) => ViewerPageLoader(
+                            courseID: state.params['id']!,
+                            topicID: state.params['topicID']!,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                GoRoute(
+                  path: 'files',
+                  builder: (context, state) =>
+                      FileManagerPage(courseID: state.params['id']!),
                 ),
                 GoRoute(
                   path: 'settings',
@@ -44,27 +96,6 @@ class Nav {
                   path: 'goals',
                   builder: (context, state) =>
                       CourseGoalsPage(courseID: state.params['id']!),
-                ),
-                GoRoute(
-                  path: 'topic/:topicID',
-                  builder: (content, state) =>
-                      // TODO
-                      CoursePage(courseID: state.params['id']!),
-                  routes: [
-                    GoRoute(
-                        path: 'newcontent/:type',
-                        builder: (context, state) {
-                          Widget? result = EditorFactory.forNewContent(
-                            state.params['id']!,
-                            state.params['topicID']!,
-                            ContentFactory.getType(state.params['type']!),
-                          );
-                          if (result != null) return result;
-                          return PageNotFound(
-                            text: 'Cannot find uri: ${state.location}',
-                          );
-                        }),
-                  ],
                 ),
               ],
             ),
