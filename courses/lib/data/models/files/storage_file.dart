@@ -1,3 +1,4 @@
+import 'package:courses/data/data.dart';
 import 'package:courses/data/models/files/file_item.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
@@ -15,4 +16,18 @@ class StorageFile implements IFileItem {
   String get name => reference.name;
 
   StorageFile({required this.reference});
+
+  @override
+  delete() async {
+    await Data.files.deleteFile(this);
+  }
+
+  @override
+  int get hashCode => reference.fullPath.hashCode;
+
+  @override
+  bool operator ==(Object other) {
+    return other is StorageFile &&
+        reference.fullPath == other.reference.fullPath;
+  }
 }

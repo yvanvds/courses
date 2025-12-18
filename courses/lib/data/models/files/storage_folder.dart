@@ -1,3 +1,7 @@
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:courses/data/data.dart';
 import 'package:courses/data/models/files/file_item.dart';
 import 'package:courses/data/models/files/storage_file.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -29,5 +33,35 @@ class StorageFolder implements IFileItem {
     }
 
     return false;
+  }
+
+  addFolder(String name) async {
+    await Data.files.createFolder(this, name);
+  }
+
+  addFile(File file) async {
+    await Data.files.uploadFile(this, file);
+  }
+
+  addFileFromData(String name, Uint8List data) async {
+    await Data.files.uploadData(this, name, data);
+  }
+
+  reload() async {
+    await Data.files.loadChildren(this);
+  }
+
+  @override
+  delete() async {
+    await Data.files.deleteFolder(this);
+  }
+
+  @override
+  int get hashCode => reference.fullPath.hashCode;
+
+  @override
+  bool operator ==(Object other) {
+    return other is StorageFolder &&
+        reference.fullPath == other.reference.fullPath;
   }
 }

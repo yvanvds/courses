@@ -23,15 +23,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       default:
         throw UnsupportedError(
           'DefaultFirebaseOptions are not supported for this platform.',
@@ -55,5 +49,25 @@ class DefaultFirebaseOptions {
     messagingSenderId: '151903926101',
     projectId: 'courses-e4848',
     storageBucket: 'courses-e4848.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyDzDp53TpFtmK9bJqkAGBvh5plxQnkM4bU',
+    appId: '1:151903926101:ios:dad0e30101b4aca660e1dc',
+    messagingSenderId: '151903926101',
+    projectId: 'courses-e4848',
+    storageBucket: 'courses-e4848.appspot.com',
+    iosClientId: '151903926101-84uiks941vl6nkjodme85gj011bnu62v.apps.googleusercontent.com',
+    iosBundleId: 'com.example.courses',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyDzDp53TpFtmK9bJqkAGBvh5plxQnkM4bU',
+    appId: '1:151903926101:ios:dad0e30101b4aca660e1dc',
+    messagingSenderId: '151903926101',
+    projectId: 'courses-e4848',
+    storageBucket: 'courses-e4848.appspot.com',
+    iosClientId: '151903926101-84uiks941vl6nkjodme85gj011bnu62v.apps.googleusercontent.com',
+    iosBundleId: 'com.example.courses',
   );
 }

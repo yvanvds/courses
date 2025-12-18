@@ -6,6 +6,7 @@ class FB {
   static final goal = GoalNames();
   static final topic = TopicNames();
   static final content = ContentNames();
+  static final account = AccountNames();
 }
 
 class CollectionNames {
@@ -49,4 +50,13 @@ class ContentNames {
   final String content = 'content';
   final String contentType = 'contentType';
   final String name = 'name';
+}
+
+class AccountNames {
+  final String email = 'email';
+  final String picture = 'photoURL';
+  final String display = 'displayName';
+  final String firstname = 'firstName';
+  final String currentCourse = 'currentCourse';
+  final String courses = 'courses';
 }

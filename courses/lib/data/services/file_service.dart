@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:courses/data/models/files/storage_file.dart';
 import 'package:courses/data/models/files/storage_folder.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 
 class FileService {
   StorageFolder getCourseRoot(String courseID) {
@@ -51,5 +52,30 @@ class FileService {
   uploadFile(StorageFolder folder, File file) async {
     Reference ref = folder.reference.child(file.uri.pathSegments.last);
     await ref.putFile(file);
+  }
+
+  uploadData(StorageFolder folder, String name, Uint8List data) async {
+    Reference ref = folder.reference.child(name);
+    await ref.putData(data);
+  }
+
+  deleteFile(StorageFile file) async {
+    await file.reference.delete();
+  }
+
+  deleteFolder(StorageFolder folder) async {
+    await loadChildren(folder);
+    for (var item in folder.folders) {
+      await deleteFolder(item);
+    }
+    for (var file in folder.files) {
+      await deleteFile(file);
+    }
+    Reference ghostfile = folder.reference.child('.ghostfile');
+    try {
+      await ghostfile.delete();
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }

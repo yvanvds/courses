@@ -1,15 +1,20 @@
+import 'dart:io';
+
 import 'package:courses/convienience/app_theme.dart';
 import 'package:courses/data/data.dart';
 import 'package:courses/data/models/content/content_factory.dart';
 import 'package:courses/data/models/content/text_content.dart';
+import 'package:courses/data/models/files/storage_folder.dart';
 import 'package:courses/data/models/topic.dart';
 import 'package:courses/pages/course/content/rich_text/styles.dart';
+import 'package:courses/pages/file_manager/file_manager_dialog.dart';
 import 'package:courses/validators/validated_text_field.dart';
 import 'package:courses/validators/validation_models.dart';
 import 'package:courses/widgets/footer.dart';
 import 'package:courses/widgets/header.dart';
 import 'package:courses/widgets/loading.dart';
 import 'package:courses/widgets/page.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:provider/provider.dart';
@@ -114,6 +119,8 @@ class _RichTextEditorState extends State<RichTextEditor> {
                         toolbarIconAlignment: WrapAlignment.start,
                         showBackgroundColorButton: false,
                         showFontSize: false,
+                        onImagePickCallback: _onImagePickCallback,
+                        webImagePickImpl: openFilePicker,
                         iconTheme: QuillIconTheme(
                           iconSelectedColor: AppTheme.colorWarning,
                           iconUnselectedColor: AppTheme.colorLightest,
@@ -172,6 +179,21 @@ class _RichTextEditorState extends State<RichTextEditor> {
         }
       }
     }
+  }
+
+  Future<String?> openFilePicker(
+      OnImagePickCallback onImagePickCallback) async {
+    StorageFolder root = await Data.files.loadCourseRoot(widget.courseID);
+
+    String? result = await showDialog(
+      context: context,
+      builder: (c) => FileManagerDialog(root: root),
+    );
+    return result;
+  }
+
+  Future<String?> _onImagePickCallback(File file) async {
+    return "";
   }
 }
 

@@ -1,4 +1,6 @@
+import 'package:courses/data/data.dart';
 import 'package:courses/data/models/content/content_factory.dart';
+import 'package:courses/data/services/auth_service.dart';
 import 'package:courses/page_not_found.dart';
 import 'package:courses/pages/course/content/editor_factory.dart';
 import 'package:courses/pages/course/topics/topics_page.dart';
@@ -8,6 +10,7 @@ import 'package:courses/pages/course/settings/course_settings_page.dart';
 import 'package:courses/pages/course/viewer/viewer_page.dart';
 import 'package:courses/pages/dashboard/dashboard.dart';
 import 'package:courses/pages/file_manager/file_manager_page.dart';
+import 'package:courses/pages/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -24,6 +27,10 @@ class Nav {
       text: 'Cannot find uri: ${state.location}',
     ),
     routes: [
+      GoRoute(
+        path: '/login',
+        builder: (context, state) => const LoginPage(),
+      ),
       GoRoute(
           path: '/',
           builder: (context, state) => const DashboardPage(),
@@ -101,5 +108,16 @@ class Nav {
             ),
           ]),
     ],
+    redirect: (state) {
+      final loggedIn = Data.auth.currentStatus == AuthStatus.done;
+      final loggingIn = state.subloc == '/login';
+
+      if (!loggedIn) return loggingIn ? null : '/login';
+      if (loggingIn) {
+        return '/';
+      }
+      return null;
+    },
+    refreshListenable: GoRouterRefreshStream(Data.auth.status.stream),
   );
 }

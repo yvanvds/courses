@@ -9,12 +9,13 @@ environment:
 
 dependencies:
   cached_network_image: ^3.2.1
-  cloud_firestore: ^3.2.1
+  cloud_firestore: ^3.4.5
   drag_and_drop_lists: ^0.3.2+2
   file_picker: ^5.0.1
-  firebase_auth: ^3.4.1
-  firebase_core: ^1.19.1
-  firebase_storage: ^10.3.4
+  firebase_auth: ^3.6.4
+  firebase_core: ^1.21.0
+  firebase_storage: ^10.3.6
+  firebase_auth_oauth: ^1.2.0
   flutter:
     sdk: flutter
   flutter_quill: ^5.0.4

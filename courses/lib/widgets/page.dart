@@ -1,4 +1,5 @@
 import 'package:courses/convienience/app_theme.dart';
+import 'package:courses/data/data.dart';
 import 'package:courses/widgets/app_drawer.dart';
 import 'package:courses/widgets/buttons/app_button.dart';
 import 'package:flutter/material.dart';
@@ -84,7 +85,7 @@ class AppScaffoldState extends State<AppScaffold> {
                   child: AppButton(
                     icon: Icons.logout,
                     onPressed: () {
-                      //Data.auth.signOut();
+                      Data.auth.signOut();
                     },
                   ),
                 ),
